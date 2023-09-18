@@ -1,3 +1,5 @@
+TODO: add a more comprehensive explanation
+
 # Custom attributes in quote item
 
 `etc/catalog_attributes.xml`
