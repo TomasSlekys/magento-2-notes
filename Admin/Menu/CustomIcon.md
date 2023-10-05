@@ -26,6 +26,10 @@
     background-size: contain;
     background-position-y: center;
 }
+
+#menu-creationlabs-top-level > a > span {
+    display: none;
+}
 ```
 
 ## Icon
