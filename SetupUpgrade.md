@@ -18,6 +18,6 @@ Run `bin/magento s:d:c` first, then try `bin/magento s:up` again
 
 ## [Docker] SQL permission error to create triggers
 
-1. Change the 'user' in `app/etc/env.php` to a `root`
+1. Change the 'user' in `app/etc/env.php` to `root`
 2. Run `bin/magento s:up` again
 3. Change the 'user' back to the original user
