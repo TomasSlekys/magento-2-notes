@@ -21,3 +21,13 @@ Run `bin/magento s:d:c` first, then try `bin/magento s:up` again
 1. Change the 'user' in `app/etc/env.php` to `root`
 2. Run `bin/magento s:up` again
 3. Change the 'user' back to the original user
+
+## Autoload error 
+
+```console
+Autoload error: We can't read some files that are required to run the Magento application. This usually means file permissions are set incorrectly.
+```
+
+1. Delete the `vendor` folder
+2. Run `composer install`
+3. Run `bin/magento s:up` again
