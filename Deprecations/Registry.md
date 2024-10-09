@@ -20,7 +20,11 @@ Newsletter Session – `\Magento\Newsletter\Model\Session`
 public function __construct(
     private readonly \Magento\Framework\Registry $registry,
 ) {
-    $product = $this->registry->registry('product');
+}
+
+public function getProduct(): \Magento\Catalog\Api\Data\ProductInterface
+{
+    return $this->registry->registry('product');
 }
 ```
 
@@ -31,7 +35,18 @@ public function __construct(
     private readonly \Magento\Catalog\Model\Session $catalogSession,
     private readonly \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
 ) {
-    $productId = $this->catalogSession->getData('last_viewed_product_id');
-    $product = $this->productRepository->getById($productId);
+}
+
+public function getProduct(): ?\Magento\Catalog\Api\Data\ProductInterface
+{
+    if ($productId = $this->catalogSession->getData('last_viewed_product_id')) {
+        try {
+            return $this->productRepository->getById($productId);
+        } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+            return null;
+        }
+    }
+    
+    return null;
 }
 ```
