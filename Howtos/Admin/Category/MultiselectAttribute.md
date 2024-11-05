@@ -1,5 +1,7 @@
 # Adding a multiselect attribute to a category
 
+![img.png](img.png)
+
 ## 1. Create the attribute
 
 Create the attribute using a data patch. **Make sure to include the backend model for the attribute so that the attribute value is saved as a comma-separated string.**
