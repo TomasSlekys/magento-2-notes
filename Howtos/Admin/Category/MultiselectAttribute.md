@@ -228,3 +228,56 @@ class DataProviderPlugin
     }
 }
 ```
+
+## 5. Create observer to save the multiselect attribute value if no value is selected
+
+This observer will set the multiselect attribute value to an empty string if no value is selected in the category form.
+If this is not done, the attribute will retain the previously selected value.
+
+`TomasSlekys/CategoryMultiselectAttribute/etc/events.xml`
+
+```xml
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_category_prepare_save">
+        <observer name="tomasslekys_categorymultiselectattribute_category_prepare_save" instance="TomasSlekys\CategoryMultiselectAttribute\Observer\Controller\Adminhtml\Category\Save"/>
+    </event>
+</config>
+```
+
+`TomasSlekys/CategoryMultiselectAttribute/Observer/Controller/Adminhtml/Category/Save.php`
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace TomasSlekys\CategoryMultiselectAttribute\Observer\Controller\Adminhtml\Category;
+
+use Magento\Framework\Event\Observer;
+use Magento\Framework\Event\ObserverInterface;
+use Magento\Framework\App\RequestInterface;
+
+class Save implements ObserverInterface
+{
+    public function __construct(
+        private readonly RequestInterface $request
+    ) {
+    }
+
+    /**
+     * @param Observer $observer
+     * @return void
+     */
+    public function execute(Observer $observer): void
+    {
+        $menuUrlData = $this->request->getParam('multiselect_attribute');
+
+        if (!$menuUrlData) {
+            $category = $observer->getCategory();
+
+            $category->setData('multiselect_attribute', '');
+        }
+    }
+}
+```
