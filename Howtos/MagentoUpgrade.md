@@ -80,3 +80,33 @@ If neither `--interactive-root-conflicts` nor `--force-root-updates` are specifi
 ```console
 composer update
 ```
+
+### 8. Update the database schema and data.
+
+```console
+bin/magento setup:upgrade
+```
+
+### 9. Recompile the code.
+
+```console
+bin/magento setup:di:compile
+```
+
+### 10. Deploy static content.
+
+```console
+bin/magento setup:static-content:deploy
+```
+
+### 11. Re-enable the cron jobs.
+
+```console
+bin/magento cron:install
+```
+
+### 12. Disable maintenance mode.
+
+```console
+bin/magento maintenance:disable
+```
