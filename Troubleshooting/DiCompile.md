@@ -6,7 +6,8 @@
 Cannot instantiate interface <Namespace>\<Module>\Api\<Interface>
 ```
 
-Run `rm -rf generated/code/* var/tmp/* var/cache/*` and try again
+1. Make sure the re is a preference for the interface in `di.xml`
+2. Run `rm -rf generated/code/* var/tmp/* var/cache/*` and try again
 
 ##  Class `<class>` generation error
 
