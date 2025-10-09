@@ -20,3 +20,18 @@ Result
 ```
 lrwxrwxrwx  1 app app   13 Oct  9 06:19 public -> magento2/pub/
 ```
+
+## Enable HTTP Auth
+
+Add HTTP Auth user
+
+```
+htpasswd -c /data/web/htpasswd dev
+```
+
+Uncomment lines in `nginx/<name>.hypernode.io/server.basicauth.conf`
+
+```
+auth_basic           "Login required";
+auth_basic_user_file /data/web/htpasswd;
+```
