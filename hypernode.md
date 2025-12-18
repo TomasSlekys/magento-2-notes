@@ -36,7 +36,7 @@ auth_basic           "Login required";
 auth_basic_user_file /data/web/htpasswd;
 ```
 
-### Add alternate store
+## Add alternate store
 
 Add store "newstore" to example.hypernode.io
 
