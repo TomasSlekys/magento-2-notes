@@ -35,3 +35,43 @@ Uncomment lines in `nginx/<name>.hypernode.io/server.basicauth.conf`
 auth_basic           "Login required";
 auth_basic_user_file /data/web/htpasswd;
 ```
+
+### Add alternate store
+
+Add store "newstore" to example.hypernode.io
+
+```
+hmv newstore.example.hypernode.io --webroot /data/web/public
+```
+
+Create `server.storecode` file inside `nginx/newstore.example.hypernode.io`
+
+```
+touch ~/nginx/newstore.example.hypernode.io/server.storecode
+```
+
+Add store code to file
+
+```
+nano ~/nginx/newstore.example.hypernode.io/server.storecode
+```
+
+If website - use website code
+
+```
+set $storecode "newstore_website_code";
+set $storetype "website";
+```
+
+If store - use store code
+
+```
+set $storecode "newstore_store_code";
+set $storetype "store";
+```
+
+Add https
+
+```
+hmv newstore.example.hypernode.io --https --force-https
+```
